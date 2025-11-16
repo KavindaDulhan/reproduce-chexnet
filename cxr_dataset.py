@@ -10,7 +10,7 @@ class CXRDataset(Dataset):
     def __init__(
             self,
             path_to_images,
-            fold,
+            # fold,
             transform=None,
             sample=0,
             finding="any",
@@ -18,8 +18,8 @@ class CXRDataset(Dataset):
 
         self.transform = transform
         self.path_to_images = path_to_images
-        self.df = pd.read_csv("nih_labels.csv")
-        self.df = self.df[self.df['fold'] == fold]
+        self.df = pd.read_csv("sample_dataset/labels.csv")
+        # self.df = self.df[self.df['fold'] == fold]
 
         if(starter_images):
             starter_images = pd.read_csv("starter_images.csv")
@@ -41,21 +41,7 @@ class CXRDataset(Dataset):
                       " as not in data - please check spelling")
 
         self.df = self.df.set_index("Image Index")
-        self.PRED_LABEL = [
-            'Atelectasis',
-            'Cardiomegaly',
-            'Effusion',
-            'Infiltration',
-            'Mass',
-            'Nodule',
-            'Pneumonia',
-            'Pneumothorax',
-            'Consolidation',
-            'Edema',
-            'Emphysema',
-            'Fibrosis',
-            'Pleural_Thickening',
-            'Hernia']
+        self.PRED_LABEL = ['Pneumonia']
         RESULT_PATH = "results/"
 
     def __len__(self):
