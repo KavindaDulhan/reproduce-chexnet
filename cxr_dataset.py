@@ -10,6 +10,7 @@ class CXRDataset(Dataset):
     def __init__(
             self,
             path_to_images,
+            path_to_labels,
             # fold,
             transform=None,
             sample=0,
@@ -18,7 +19,7 @@ class CXRDataset(Dataset):
 
         self.transform = transform
         self.path_to_images = path_to_images
-        self.df = pd.read_csv("sample_dataset/labels.csv")
+        self.df = pd.read_csv(path_to_labels)
         # self.df = self.df[self.df['fold'] == fold]
 
         if(starter_images):
